@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+</head>
+<body>
+	<div id="nav-col" th:fragment="menu">
+		<div id="col-left-inner" class="col-left-nano-content">
+			<div id="user-left-box" class="clearfix hidden-sm hidden-xs">
+				<div class="user-box"></div>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse"
+				id="sidebar-nav">
+				<ul class="nav nav-pills nav-stacked">
+					<li ><a th:href="@{/sms/editSms}"><span>发送短信</span></a>
+					</li>
+					<li ><a th:href="@{/template/listTemplate}"><span>短信模板</span></a>
+					</li>
+					<li ><a th:href="@{/user/listUser}"><span>用户管理</span></a>
+					</li>
+					<li ><a th:href="@{/dept/listDept}"><span>组织机构管理</span></a>
+					</li>
+					<li ><a th:href="@{/sms/listSend}"><span>发送查询</span></a>
+					</li>
+					<li ><a th:href="@{/sms/listReceive}"><span>上行短信</span></a>
+					</li>
+					</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

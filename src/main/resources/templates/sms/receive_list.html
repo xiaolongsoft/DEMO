@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="common/layout">
+<head>
+    <title>短信模板列表</title>
+    <script th:src="@{/My97DatePicker/WdatePicker.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+    var msg = [[${msg}]];
+	if( msg != null ){
+		alert(msg);
+	};
+    //条件查询数据校验
+    function check() {
+    }
+    </script>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="main-box clearfix">
+                            <header class="main-box-header clearfix">
+                                <div class="clearfix">
+                                    <form method="post" th:action="@{/dept/listDept}" onsubmit="return check()">
+                                        <div class="filter-block pull-right">
+											<a th:href="@{/dept/editDept}" class="btn btn-info">以下行短信列表</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </header>
+                            <div class="main-box-body clearfix">
+                                <div class="table-responsive clearfix">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+												<th>发送号码</th>
+												<th>接收号码</th>
+												<th>短信内容</th>
+												<th>发送时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                              <tr th:each="item,itemStat:${page.data}">
+												<td th:title="${item.sendno }" th:text="${item.sendno}"></td>
+												<td th:title="${item.receiverInfo }" th:text="${item.receiverInfo}"></td>
+												<td th:title="${item.content }" th:text="${item.content}"></td>
+												<td th:title="${item.acceptTime }" th:text="${item.acceptTime}"></td>
+												<td th:title="${item.ctime }" th:text="${item.ctime}"></td>
+                                            </tr>         													
+                                        </tbody>
+                                    </table>
+                                    <div th:with="linkUrl='',start=${page.offset},total=${page.count},pageSize=10">
+                                    <div th:replace="common/pagination :: pagenav"></div>
+                                	</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+</html>

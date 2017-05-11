@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="common/layout">
+<head>
+    <title>短信模板列表</title>
+    <script th:src="@{/My97DatePicker/WdatePicker.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+    var msg = [[${msg}]];
+	if( msg != null ){
+		alert(msg);
+	};
+    //条件查询数据校验
+    function check() {
+    }
+    </script>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="main-box clearfix">
+                            <header class="main-box-header clearfix">
+                                <div class="clearfix">
+                                    <form method="post" th:action="@{/template/listTemplate}" onsubmit="return check()">
+                                        <div class="filter-block pull-left">
+                                        	短信主题：
+                                        	<input name="subject" th:value="${theme}" maxlength="50" />
+                                        </div>
+                                        <div class="filter-block pull-right">
+											<a th:href="@{/template/editTemplate}" class="btn btn-info">新增模板</a>
+                                        	<button id="serach" type="submit" class="btn btn-primary">搜索</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </header>
+                            <div class="main-box-body clearfix">
+                                <div class="table-responsive clearfix">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>编号</th>
+												
+												<th>短信主题</th>
+												<th>短信内容</th>
+												<th>开始时间</th>
+												<th>结束时间</th>
+												<th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                              <tr th:each="item,itemStat:${page.data}">
+                                              <td th:title="${item.temId}" th:text="${item.temId}"></td>
+												<td th:title="${item.subject }" th:text="${item.subject}"></td>
+												<td th:title="${item.content }" th:text="${#strings.abbreviate(item.content,20)}"></td>
+												<td th:title="${item.startTime }" th:text="${item.startTime==null}?'':${#strings.substring(item.startTime,0,16)}"></td>
+												<td th:title="${item.endTime }" th:text="${item.endTime==null}?'':${#strings.substring(item.endTime,0,16)}"></td>
+												<td><a th:href="@{/template/editTemplate(temId=${item.temId})}" class="btn btn-info">修改</a>
+												<a th:href="@{/template/allotTemplate(temId=${item.temId})}"  class="btn btn-primary">分配</a>
+												<a th:href="@{/template/deleteTemplate(temId=${item.temId})}" class="btn btn-danger">删除</a>
+												</td>
+                                            </tr>                 
+                                        </tbody>
+                                    </table>
+                                     <div th:with="linkUrl='',start=${page.offset},total=${page.count},pageSize=10">
+                                    <div th:replace="common/pagination :: pagenav"></div>
+                                	</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+</html>

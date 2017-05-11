@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="common/layout">
+<head>
+<title>流量平台V1.0</title>
+<script th:src="@{/js/jquery.pagination.js}"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+<div class="row">
+<div class="col-lg-12">
+<div class="row">
+<div class="col-lg-12">
+<ol class="breadcrumb">
+<li><a href="#">首页</a></li>
+<li class="active"><span>工作台</span></li>
+</ol>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-3 col-sm-6 col-xs-12">
+<div class="main-box infographic-box">
+<i class="fa fa-user red-bg"></i>
+<span class="headline">余额</span>
+<span class="value">
+&#165;<span class="timer" data-from="120" data-to="2562" data-speed="1000" data-refresh-interval="50">
+2562
+</span>
+</span>
+</div>
+</div>
+<div class="col-lg-3 col-sm-6 col-xs-12">
+<div class="main-box infographic-box">
+<i class="fa fa-cu"></i>
+<span class="headline">成功量</span>
+<span class="value">
+<span class="timer" data-from="30" data-to="658" data-speed="800" data-refresh-interval="30">
+658
+</span>
+</span>
+</div>
+</div>
+<div class="col-lg-3 col-sm-6 col-xs-12">
+<div class="main-box infographic-box">
+<i class="fa fa-cm"></i>
+<span class="headline">成功量</span>
+<span class="value">
+<span class="timer" data-from="83" data-to="8400" data-speed="900" data-refresh-interval="60">
+8400
+</span>
+</span>
+</div>
+</div>
+<div class="col-lg-3 col-sm-6 col-xs-12">
+<div class="main-box infographic-box">
+<i class="fa fa-ct"></i>
+<span class="headline">成功量</span>
+<span class="value">
+<span class="timer" data-from="539" data-to="12526" data-speed="1100">
+12526
+</span>
+</span>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<div class="main-box clearfix">
+<header class="main-box-header clearfix">
+<h2 class="pull-left">最新订单</h2>
+<div class="clearfix">
+<h1 class="pull-left">Users</h1>
+<div class="pull-right top-page-ui">
+<a href="#" class="btn btn-primary pull-right">
+<i class="fa fa-plus-circle fa-lg"></i> Add user
+</a>
+</div>
+</div>
+<div class="filter-block pull-right">
+<div class="form-group pull-left">
+<input type="text" class="form-control" placeholder="请输入手机号码查询订单"/>
+<i class="fa fa-search search-icon"></i>
+</div>
+<a href="#" class="btn btn-primary pull-right">
+<i class="fa fa-eye fa-lg"></i>查看所有订单
+</a>
+</div>
+</header>
+<div class="main-box-body clearfix">
+<div class="table-responsive clearfix">
+<table class="table table-hover">
+<thead>
+<tr>
+<th><a href="#"><span>Order ID</span></a></th>
+<th><a href="#" class="desc"><span>Date</span></a></th>
+<th><a href="#" class="asc"><span>Customer</span></a></th>
+<th class="text-center"><span>Status</span></th>
+<th class="text-right"><span>Price</span></th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="#">#8002</a>
+</td>
+<td>
+2013/08/08
+</td>
+<td>
+<a href="#">Robert De Niro</a>
+</td>
+<td class="text-center">
+<span class="label label-success">Completed</span>
+</td>
+<td class="text-right">
+825.50
+</td>
+<td class="text-center" style="width: 15%;">
+<a href="#" class="table-link">
+<span class="fa-stack">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+<a href="#" class="table-link">
+<span class="fa-stack">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+<a href="#" class="table-link danger">
+<span class="fa-stack">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="#">#5832</a>
+</td>
+<td>
+2013/08/08
+</td>
+<td>
+<a href="#">John Wayne</a>
+</td>
+<td class="text-center">
+<span class="label label-warning">On hold</span>
+</td>
+<td class="text-right">
+923.93
+</td>
+<td class="text-center" style="width: 15%;">
+<a href="#" class="table-link">
+<span class="fa-stack">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="#">#2547</a>
+</td>
+<td>
+2013/08/08
+</td>
+<td>
+<a href="#">Anthony Hopkins</a>
+</td>
+<td class="text-center">
+<span class="label label-info">Pending</span>
+</td>
+<td class="text-right">
+1.625.50
+</td>
+<td class="text-center" style="width: 15%;">
+<a href="#" class="table-link">
+<span class="fa-stack">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="#">#9274</a>
+</td>
+<td>
+2013/08/08
+</td>
+<td>
+<a href="#">Charles Chaplin</a>
+</td>
+<td class="text-center">
+<span class="label label-danger">Cancelled</span>
+</td>
+<td class="text-right">
+35.34
+</td>
+<td class="text-center" style="width: 15%;">
+<a href="#" class="table-link">
+<span class="fa-stack">
+<i class="fa fa-square fa-stack-2x"></i>
+<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+</span>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="pagination pull-right">
+<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+<li><a href="#">1</a></li>
+<li><a href="#">2</a></li>
+<li><a href="#">3</a></li>
+<li><a href="#">4</a></li>
+<li><a href="#">5</a></li>
+<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+</ul>
+</div>
+<!-- tab biaoqian begin -->
+<div class="tabs-wrapper tabs-no-header">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#tab-home" data-toggle="tab">General</a></li>
+<li><a href="#tab-accounts" data-toggle="tab">Accounts</a></li>
+<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+Technical <span class="caret"></span>
+</a>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#tab-configuration" data-toggle="tab">Configuration</a></li>
+<li><a href="#tab-configuration" data-toggle="tab">Voice</a></li>
+<li class="divider"></li>
+<li><a href="#tab-configuration" data-toggle="tab">Messaging</a></li>
+</ul>
+</li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane fade in active" id="tab-home">
+<h3><span>General information</span></h3>
+<div class="panel-group accordion" id="accordion">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+<i class="fa fa-cloud"></i> What is a good example of a Centaurus application?
+</a>
+</h4>
+</div>
+<div id="collapseOne" class="panel-collapse collapse">
+<div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio. Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a, lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices placerat. Vivamus suscipit vulputate lacinia. Vestibulum et nisi vel odio dignissim sagittis ut suscipit felis. Vestibulum convallis turpis lectus, a porta est facilisis id.
+<br/>
+<br/>
+Ut tincidunt elit vitae eleifend blandit. Aenean condimentum neque libero, vehicula sodales massa porta tincidunt. Vestibulum quis felis eget ante fringilla interdum. Pellentesque vehicula neque a libero porta cursus a a neque. Sed vitae lectus urna. Vivamus rutrum ex in purus lacinia vehicula. Fusce mollis sapien sit amet ipsum blandit, ac tristique erat aliquam.
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+<i class="fa fa-gavel"></i> What can I build with Centaurus?
+</a>
+</h4>
+</div>
+<div id="collapseTwo" class="panel-collapse collapse">
+<div class="panel-body">
+Mauris eu ultrices metus. Nam blandit malesuada metus a laoreet. Maecenas nec dolor at purus elementum aliquam. Sed id risus at elit facilisis laoreet. Duis mollis ac justo sed varius. Duis non dolor non tellus tincidunt vestibulum at ac velit. Ut quis urna erat. Duis turpis est, egestas sed pellentesque fringilla, mattis eu augue.
+</div>
+</div>
+</div>
+</div>
+<h3><span>Billing information</span></h3>
+<div class="panel-group accordion" id="accordion4">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion4" href="#collapseOne4">
+<i class="fa fa-btc"></i> How does Centaurus’s pricing work?
+</a>
+</h4>
+</div>
+<div id="collapseOne4" class="panel-collapse collapse">
+<div class="panel-body">
+Fusce quis luctus eros, sed bibendum dolor. Nullam eget felis libero. Morbi orci est, tempus suscipit imperdiet a, sollicitudin at elit. Ut a convallis odio, quis rutrum felis. Nullam maximus tellus velit, eu eleifend odio finibus nec. Integer porttitor a enim sed congue. Cras interdum erat non pharetra consectetur.
+<br/>
+<br/>
+In fermentum ullamcorper dapibus. Ut eleifend tellus ullamcorper, hendrerit mi at, pharetra nulla. Donec condimentum egestas elementum. Integer sed vehicula tortor, a porta neque. Nullam posuere non enim et accumsan. Duis volutpat blandit orci, id interdum leo pulvinar vel. Morbi consequat viverra mi a tincidunt.
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion4" href="#collapseTwo4">
+<i class="fa fa-coffee"></i> What happens if my Centaurus account balance reaches zero?
+</a>
+</h4>
+</div>
+<div id="collapseTwo4" class="panel-collapse collapse">
+<div class="panel-body">
+Integer ut tellus nisi. Mauris libero velit, ornare cursus tincidunt non, mollis sit amet libero. Donec nec vehicula turpis, vel faucibus tortor. Quisque quis viverra risus, congue hendrerit lorem. Fusce quis molestie ipsum, vitae imperdiet mauris. Fusce non fringilla nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam fringilla dictum dolor sed tincidunt. In interdum nisi sem, eu gravida urna venenatis sit amet. Cras tristique cursus lacinia. Phasellus nec est fermentum, porta leo in, accumsan nisl. Duis iaculis eu nulla sit amet ultrices. Nunc vel volutpat ex.
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-pane fade" id="tab-accounts">
+<h3><span>Accounts information</span></h3>
+<div class="panel-group accordion" id="accordion2">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2">
+What is a subaccount?
+</a>
+</h4>
+</div>
+<div id="collapseOne2" class="panel-collapse collapse">
+<div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio. Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a, lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices placerat. Vivamus suscipit vulputate lacinia. Vestibulum et nisi vel odio dignissim sagittis ut suscipit felis. Vestibulum convallis turpis lectus, a porta est facilisis id.
+<br/>
+<br/>
+Ut tincidunt elit vitae eleifend blandit. Aenean condimentum neque libero, vehicula sodales massa porta tincidunt. Vestibulum quis felis eget ante fringilla interdum. Pellentesque vehicula neque a libero porta cursus a a neque. Sed vitae lectus urna. Vivamus rutrum ex in purus lacinia vehicula. Fusce mollis sapien sit amet ipsum blandit, ac tristique erat aliquam.
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo2">
+How do I cancel my account?
+</a>
+</h4>
+</div>
+<div id="collapseTwo2" class="panel-collapse collapse">
+<div class="panel-body">
+Sed lobortis non mi et elementum. Quisque in ex dictum, lacinia augue sit amet, commodo quam. Curabitur sit amet auctor nisi. Aenean viverra elit quam, eget efficitur turpis tincidunt vitae. Pellentesque a velit vitae neque tincidunt pharetra eu vel nisl. Integer ac ipsum sed ligula bibendum molestie vel sed sem. Pellentesque a vehicula ante. Fusce commodo sodales purus eget interdum. Pellentesque id aliquam quam.
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-pane fade" id="tab-configuration">
+<h3><span>Technical information</span></h3>
+<div class="panel-group accordion" id="accordion3">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne3">
+How do I protect unauthorized access to my media on Centaurus?
+</a>
+</h4>
+</div>
+<div id="collapseOne3" class="panel-collapse collapse">
+<div class="panel-body">
+Ut tincidunt elit vitae eleifend blandit. Aenean condimentum neque libero, vehicula sodales massa porta tincidunt. Vestibulum quis felis eget ante fringilla interdum. Pellentesque vehicula neque a libero porta cursus a a neque. Sed vitae lectus urna. Vivamus rutrum ex in purus lacinia vehicula. Fusce mollis sapien sit amet ipsum blandit, ac tristique erat aliquam.
+<br/>
+<br/>
+Mauris eu ultrices metus. Nam blandit malesuada metus a laoreet. Maecenas nec dolor at purus elementum aliquam. Sed id risus at elit facilisis laoreet. Duis mollis ac justo sed varius. Duis non dolor non tellus tincidunt vestibulum at ac velit. Ut quis urna erat. Duis turpis est, egestas sed pellentesque fringilla, mattis eu augue.
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo3">
+Which IP addresses will Centaurus’s requests come from?
+</a>
+</h4>
+</div>
+<div id="collapseTwo3" class="panel-collapse collapse">
+<div class="panel-body">
+Sed lobortis non mi et elementum. Quisque in ex dictum, lacinia augue sit amet, commodo quam. Curabitur sit amet auctor nisi. Aenean viverra elit quam, eget efficitur turpis tincidunt vitae. Pellentesque a velit vitae neque tincidunt pharetra eu vel nisl. Integer ac ipsum sed ligula bibendum molestie vel sed sem. Pellentesque a vehicula ante. Fusce commodo sodales purus eget interdum. Pellentesque id aliquam quam.
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title">
+<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree3">
+What are Centaurus's business hours for support?
+</a>
+</h4>
+</div>
+<div id="collapseThree3" class="panel-collapse collapse">
+<div class="panel-body">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio. Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a, lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices placerat. Vivamus suscipit vulputate lacinia. Vestibulum et nisi vel odio dignissim sagittis ut suscipit felis. Vestibulum convallis turpis lectus, a porta est facilisis id.
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- tab biaoqian end -->
+<!-- element begin -->
+<div class="col-lg-12">
+ 
+<button type="button" class="btn btn-default">Default</button>
+ 
+<button type="button" class="btn btn-primary">Primary</button>
+ 
+<button type="button" class="btn btn-success">Success</button>
+ 
+<button type="button" class="btn btn-info">Info</button>
+ 
+<button type="button" class="btn btn-warning">Warning</button>
+ 
+<button type="button" class="btn btn-danger">Danger</button>
+ 
+<button type="button" class="btn btn-link">Link</button>
+<br/><br/>
+<div class="btn-group">
+<button type="button" class="btn btn-default">Left</button>
+<button type="button" class="btn btn-default">Middle</button>
+<button type="button" class="btn btn-default">Right</button>
+</div>
+<br/><br/>
+<div class="btn-group">
+<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+Action <span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+Action <span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+Action <span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+Action <span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<br/><br/>
+<div class="btn-group">
+<button type="button" class="btn btn-default">Action</button>
+<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-primary">Action</button>
+<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-success">Action</button>
+<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-danger">Action</button>
+<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-info"><i class="fa fa-cloud-download"></i></button>
+<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another action</a></li>
+<li><a href="#">Something else here</a></li>
+<li class="divider"></li>
+<li><a href="#">Separated link</a></li>
+</ul>
+</div>
+<br/><br/>
+<button type="button" class="btn btn-primary btn-lg">
+<span class="fa fa-anchor"></span> Icon button
+</button>
+<button type="button" class="btn btn-success btn-lg">
+<span class="fa fa-heart"></span> Icon button
+</button>
+<button type="button" data-loading-text="Loading..." class="btn btn-primary btn-lg" id="btn-loading-demo">
+Loading button
+</button>
+</div>
+<!-- element end -->
+<!-- input begin -->
+<div class="col-lg-6">
+<div class="main-box">
+<header class="main-box-header clearfix">
+<h2>Basic elements</h2>
+</header>
+<div class="main-box-body clearfix">
+<div class="form-group">
+<label for="exampleInputEmail1">Email address</label>
+<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
+</div>
+<div class="form-group">
+<label for="exampleInputPassword1">Password</label>
+<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+</div>
+<div class="form-group">
+<label for="exampleTextarea">Textarea</label>
+<textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+</div>
+<div class="form-group">
+<label for="exampleTooltip">Input with Tooltip</label>
+<input type="text" class="form-control" id="exampleTooltip" data-toggle="tooltip" data-placement="bottom" title="very nice tooltip about this field"/>
+</div>
+<div class="form-group has-success">
+<label class="control-label" for="inputSuccess">Input with success</label>
+<input type="text" class="form-control" id="inputSuccess"/>
+<span class="help-block"><i class="icon-ok-sign"></i> Success message</span>
+</div>
+<div class="form-group has-warning">
+<label class="control-label" for="inputWarning">Input with warning</label>
+<input type="text" class="form-control" id="inputWarning"/>
+<span class="help-block"><i class="icon-warning-sign"></i> Warning message</span>
+</div>
+<div class="form-group has-error">
+<label class="control-label" for="inputError">Input with error</label>
+<input type="text" class="form-control" id="inputError"/>
+<span class="help-block"><i class="icon-remove-sign"></i> Error message</span>
+</div>
+<div class="profile-message-btn center-block text-center">
+<a href="#" class="btn btn-success">
+提交
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- input end -->
+</div>
+<!-- 提示 begin -->
+<div class="alert alert-success fade in" style="margin: 100px 0;">
+<i class="fa fa-check-circle fa-fw fa-lg"></i>
+<strong>操作成功!</strong> You have successfully finished our nice wizard.
+</div>
+<div class="alert alert-danger fade in" style="margin: 100px 0;">
+<i class="fa fa-ban fa-fw fa-lg"></i>
+<strong>操作失败!</strong> You have successfully finished our nice wizard.
+</div>
+<!-- 提示 end -->
+<!-- input begin-->
+<div class="form-group">
+<label>Checkboxes</label>
+<div class="checkbox-nice">
+<input type="checkbox" id="checkbox-1" checked="checked"/>
+<label for="checkbox-1">
+Option one is this and that&mdash;be sure to include why it's great
+</label>
+</div>
+<div class="checkbox-nice">
+<input type="checkbox" id="checkbox-2"/>
+<label for="checkbox-2">
+Option two is this and that&mdash;be sure to include why it's great
+</label>
+</div>
+<div class="checkbox-nice">
+<input type="checkbox" id="checkbox-3"/>
+<label for="checkbox-3">
+Option three is this and that&mdash;be sure to include why it's great
+</label>
+</div>
+</div>
+<div class="form-group">
+<label>Radio inputs</label>
+<div class="radio">
+<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="checked"/>
+<label for="optionsRadios1">
+Option one is this and that&mdash;be sure to include why it's great
+</label>
+</div>
+<div class="radio">
+<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"/>
+<label for="optionsRadios2">
+Option two can be something else and selecting it will deselect option one
+</label>
+</div>
+</div>
+<!-- input end-->
+</div>
+</div>
+</div>
+</div>
+</th:block>
+</body>
+</html>

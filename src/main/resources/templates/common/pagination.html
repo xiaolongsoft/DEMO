@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<div th:fragment="pagenav">
+		<ul th:if="${total gt pageSize}" class="pagination pull-right"
+			th:with="currentPage=${start/pageSize+1},currentPageN=${start/pageSize+2},hi=${start/pageSize+6},lo=${(start/pageSize le 4)?1:(start/pageSize-4)},numPages=${total!=pageSize?(total%pageSize>0?(total/pageSize+1):total/pageSize):1},minPage=${hi ge numPages?numPages:hi},minVal=${(lo gt currentPage-1)?lo:currentPage-1},pminVal=${(currentPageN le minPage)?currentPageN:minPage}">
+			<li><a th:if="${start gt 0}"
+				th:href="@{${linkUrl}(offset=${start-pageSize},pageSize=${pageSize})}">上一页</a>
+			</li>
+			<li th:if="${lo gt 1}">
+				<a th:href="@{${linkUrl}(offset=0,pageSize=${pageSize})}">1</a>
+			</li>
+			<li th:if="${lo gt 1}"><span>...</span></li>
+			<li th:if="${lo lt currentPage}"
+				th:each="pageNo : ${#numbers.sequence(lo,minVal)}"><a
+				th:href="@{${linkUrl}(offset=${(pageNo-1)*pageSize},pageSize=${pageSize})}"
+				th:text="${pageNo}"></a>
+			</li>
+			<li class="active"><span th:text="${currentPage}"></span></li>
+			<li th:if="${currentPageN le minPage}" th:each="pageNo : ${#numbers.sequence(pminVal,minPage)}">
+				<a th:href="@{${linkUrl}(offset=${(pageNo-1)*pageSize},pageSize=${pageSize})}" th:text="${pageNo}"></a>
+			</li>
+			<li th:if="${minPage lt numPages}"><span>...</span></li>
+			<li th:if="${minPage lt numPages}">
+				<a th:href="@{${linkUrl}(offset=${(numPages-1)*pageSize},pageSize=${pageSize})}" th:text="${numPages}"></a>
+			</li>
+			<li th:if="${total gt (start+pageSize)}">
+				<a th:href="@{${linkUrl}(offset=${start+pageSize},pageSize=${pageSize})}">下一页</a>
+			</li>
+		</ul>
+		<ul class="pagination pull-right">
+			<li th:if="${total>0}"><span th:text="共+${total}+条"></span></li>
+			<li th:if="${total==0}"><span>未查询到数据。</span></li>
+			<li>&nbsp;</li>
+		</ul>
+	</div>
+</body>
+</html>

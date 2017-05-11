@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crosstek.sms114.dao.ReceiveDao" >
+		
+		<resultMap type="com.crosstek.sms114.domain.Receive" id="Receive">
+				<result   column="mo_id"  property="moId" jdbcType="BIGINT"/>
+				<result   column="sendno"  property="sendno" jdbcType="VARCHAR"/>
+				<result   column="receiver_info"  property="receiverInfo" jdbcType="VARCHAR"/>
+				<result   column="content"  property="content" jdbcType="VARCHAR"/>
+				<result   column="accept_time"  property="acceptTime" jdbcType="TIMESTAMP"/>
+				<result   column="ctime"  property="ctime" jdbcType="TIMESTAMP"/>
+		</resultMap>
+
+  <select id="getRecordCount"  resultType="java.lang.Long" >
+    select   count(*) from sms_receive  
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="Receive" >
+    select `mo_id` ,`sendno` ,`receiver_info` ,`content` ,`accept_time` ,`ctime`  from sms_receive where  `mo_id` = #{moId}
+  </select>
+  
+  <select id="search" resultMap="Receive">
+    select `mo_id` ,`sendno` ,`receiver_info` ,`content` ,`accept_time` ,`ctime`  from sms_receive
+    
+    limit #{offset},#{pageSize}
+  </select>
+  
+  <insert id="insert" parameterType="com.crosstek.sms114.domain.Receive" useGeneratedKeys="true" >
+    insert into sms_receive (`sendno` ,`receiver_info` ,`content` ,`accept_time` ,`ctime` ) values (#{sendno},#{receiverInfo},#{content},#{acceptTime},#{ctime})
+  </insert>
+  
+  <delete id="deleteByPrimaryKey">
+    delete from sms_receive where  `mo_id` = #{moId}
+  </delete>
+  
+  <update id="updateByPrimaryKey" parameterType="com.crosstek.sms114.domain.Receive" >
+    update sms_receive set `sendno` = #{sendno},`receiver_info` = #{receiverInfo},`content` = #{content},`accept_time` = #{acceptTime} where  `mo_id` = #{moId}
+  </update>
+  
+</mapper>

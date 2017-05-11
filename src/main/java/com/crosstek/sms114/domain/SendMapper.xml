@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crosstek.sms114.dao.SendDao" >
+	
+	<resultMap type="com.crosstek.sms114.domain.Send" id="Send">
+			<result  column="mt_id"  property="mtId" jdbcType="BIGINT"/>
+			<result  column="receiver_info"  property="receiverInfo" jdbcType="VARCHAR"/>
+			<result  column="content"  property="content" jdbcType="VARCHAR"/>
+			<result  column="subject"  property="subject" jdbcType="VARCHAR"/>
+			<result  column="media_task_id"  property="mediaTaskId" jdbcType="VARCHAR"/>
+			<result  column="mo_id"  property="moId" jdbcType="BIGINT"/>
+			<result  column="ctime"  property="ctime" jdbcType="TIMESTAMP"/>
+			<result  column="mtime"  property="mtime" jdbcType="TIMESTAMP"/>
+			<result  column="user_id"  property="userId" jdbcType="BIGINT"/>
+			<result  column="sysuid"  property="sysuid" jdbcType="BIGINT"/>
+			<result  column="mcount"  property="mcount" jdbcType="BIGINT"/>
+	</resultMap>
+	
+		
+
+		<sql id="ByWhereClause">
+		<trim prefix="where" prefixOverrides="and">
+		<if test="receiverInfo !=null and receiverInfo != '' "> and receiver_info=#{receiverInfo} </if>
+			<if test="subject !=null and subject != '' "> and subject LIKE CONCAT('%',#{subject},'%' ) </if>
+			<if test="content !=null and content != '' "> and LIKE CONCAT('%',#{content},'%' ) </if>
+			<if test="sendTime !=null and sendTime != '' "> and send_time&gt;=#{sendTime}</if>
+			<if test="userId !=null and userId != '' "> and user_id;=#{userId}</if>
+		</trim>
+		</sql>
+			
+
+			
+		
+	
+  <select id="getRecordCount"  resultType="java.lang.Long"  >
+    select   count(*) from sms_send  
+       <include refid="ByWhereClause"></include>
+  </select>
+		
+  <select id="selectByPrimaryKey" resultMap="Send" >
+    select `mt_id` ,`receiver_info` ,`content` ,`subject` ,`send_time` ,`media_task_id` ,`mo_id` ,`ctime` ,`mtime` ,`user_id` ,`sysuid` ,`mcount`  from sms_send where  `mt_id` = #{mtId}
+  </select>
+  
+  <select id="search" resultMap="Send">
+    select `mt_id` ,`receiver_info` ,`content` ,`subject` ,`send_time` ,`media_task_id` ,`mo_id` ,`ctime` ,`mtime` ,`user_id` ,`sysuid` ,`mcount`  from sms_send
+    <include refid="ByWhereClause"></include>
+   	 limit #{offset},#{pageSize}
+  </select>
+  
+  <insert id="insert" parameterType="com.crosstek.sms114.domain.Send" useGeneratedKeys="true" >
+    insert into sms_send (`receiver_info` ,`content` ,`subject` ,`send_time` ,`media_task_id` ,`mo_id` ,`ctime` ,`mtime` ,`user_id` ,`sysuid` ,`mcount` ) values (#{receiverInfo},#{content},#{subject},#{sendTime},#{mediaTaskId},#{moId},#{ctime},#{mtime},#{userId},#{sysuid},#{mcount})
+  </insert>
+  
+  <delete id="deleteByPrimaryKey">
+    delete from sms_send where  `mt_id` = #{mtId}
+  </delete>
+  
+  <update id="updateByPrimaryKey" parameterType="com.crosstek.sms114.domain.Send" >
+    update sms_send set `receiver_info` = #{receiverInfo},`content` = #{content},`subject` = #{subject},`send_time` = #{sendTime},`media_task_id` = #{mediaTaskId},`mo_id` = #{moId},`mtime` = #{mtime},`user_id` = #{userId},`sysuid` = #{sysuid},`mcount` = #{mcount} where  `mt_id` = #{mtId}
+  </update>
+  
+
+</mapper>

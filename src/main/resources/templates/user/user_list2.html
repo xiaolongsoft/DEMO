@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="common/layout">
+<head>
+<title>代理用户列表</title>
+<script th:src="@{/My97DatePicker/WdatePicker.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    var msg = [[${msg}]];
+	if( msg != null ){
+		alert(msg);
+	};
+    //条件查询数据校验
+    function check() {
+    }
+    </script>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="row">
+			<div class="col-lg-12">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="main-box clearfix">
+							<header class="main-box-header clearfix">
+								<div class="clearfix">
+									<form method="post" th:action="@{/user/listUser}"
+										onsubmit="return check()">
+										<div class="filter-block pull-right">
+											<a th:href="@{/user/editUser}" class="btn btn-info">添加账号</a>
+										</div>
+									</form>
+								</div>
+							</header>
+							<div class="main-box-body clearfix">
+								<div class="table-responsive clearfix">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>编号</th>
+												<th>姓名</th>
+												<th>小组</th>
+												<th>角色</th>
+												<th>创建时间</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="item,itemStat:${userList}">
+												<td th:title="${item.userId}" th:text="${item.userId}"></td>
+												<td th:title="${item.name }" th:text="${item.name}"></td>
+												<td th:title="${item.deptId }" th:text="${item.deptId}"></td>
+												<td th:title="${item.roleid }" th:text="${item.roleid}"></td>
+												<td th:title="${item.ctime }" th:text="${item.ctime}"></td>
+												<td><a
+													th:href="@{/user/editUser(userId=${item.userId})}"
+													class="btn btn-info">修改</a></td>
+											</tr>
+										</tbody>
+									</table>
+									<div
+										th:with="linkUrl='',start=${page.offset},total=${page.count},pageSize=10">
+										<div th:replace="common/pagination :: pagenav"></div>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crosstek.sms114.dao.DeptDao" >
+		<resultMap type="com.crosstek.sms114.domain.Dept" id="Dept">
+				<result   column="dept_id"  property="deptId" jdbcType="BIGINT"/>
+				<result   column="name"  property="name" jdbcType="VARCHAR"/>
+				<result   column="pid"  property="pid" jdbcType="BIGINT"/>
+				<result   column="user"  property="user" jdbcType="BIGINT"/>
+				<result   column="ctime"  property="ctime" jdbcType="TIMESTAMP"/>
+		</resultMap>
+	
+
+	
+
+
+  <select id="selectByPrimaryKey"  resultMap="Dept" >
+    select `dept_id` ,`name` ,`pid` ,`ctime` ,`user`  from t_dept where  `dept_id` = #{deptId}
+  </select>
+  
+  <select id="getRecordCount"  resultType="java.lang.Long" >
+    select   count(*) from t_dept  
+  </select>
+  
+  <select id="search" resultMap="Dept">
+    select `dept_id` ,`name` ,`pid` ,`ctime` ,`user`  from t_dept
+  </select>
+  
+    <select id="searchTreeData" resultType="com.crosstek.sms114.common.TreeData">
+    select `dept_id` id  ,`pid` pId ,`name` from t_dept
+  </select> 
+  
+  <insert id="insert" parameterType="com.crosstek.sms114.domain.Dept" useGeneratedKeys="true" >
+    insert into t_dept (`name` ,`pid` ,`ctime` ,`user` ) values (#{name},#{pid},#{ctime},#{user})
+  </insert>
+  
+  <delete id="deleteByPrimaryKey">
+    delete from t_dept where  `dept_id` = #{deptId}
+  </delete>
+  
+  <update id="updateByPrimaryKey" parameterType="com.crosstek.sms114.domain.Dept" >
+    update t_dept set `name` = #{name},`pid` = #{pid},`user` = #{user} where  `dept_id` = #{deptId}
+  </update>
+  
+  
+  
+</mapper>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="common/layout">
+<head>
+    <title>短信模板列表</title>
+    <script th:src="@{/My97DatePicker/WdatePicker.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+    var msg = [[${msg}]];
+	if( msg != null ){
+		alert(msg);
+	};
+    //条件查询数据校验
+    function checkTimes(o) {
+    	window.location.href="reSaveSend?mtId="+o.id;
+    }
+    </script>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="main-box clearfix">
+                            <header class="main-box-header clearfix">
+                                <div class="clearfix">
+                                    <form method="post" th:action="@{/sms/listSend}" onsubmit="return check()">
+                                        <div class="filter-block pull-left">
+                                        	电话号码：
+                                        	<input name="receiverInfo" th:value="${send.receiverInfo}" maxlength="50" />
+                                        </div>
+                                        <div class="filter-block pull-right">
+                                        	<button id="serach" type="submit" class="btn btn-primary">搜索</button>
+                                        </div>													
+                                    </form>
+                                </div>
+                            </header>
+                            <div class="main-box-body clearfix">
+                                <div class="table-responsive clearfix">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+												<th>电话号码</th>
+												<th>主题</th>
+												<th>内容</th>
+												<th>发送时间</th>
+												<th>返回结果</th>
+												<th>发送次数</th>
+												<th>业务人员</th>
+												<th>更新时间</th>
+												<th>操作</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                              <tr th:each="item,itemStat:${page.data}">
+												<td th:title="${item.receiverInfo }" th:text="${item.receiverInfo}"></td>
+												<td th:title="${item.subject }" th:text="${item.subject}"></td>
+												<td th:title="${item.content }" th:text="${#strings.abbreviate(item.content,20)}"></td>
+												
+												<td th:title="${item.sendTime }" th:text="(${item.sendTime==null })?'':${#strings.substring(item.sendTime,0,16)}"></td>
+												<td th:title="${item.moId }" th:text="${item.moId}"></td>
+												<td th:title="${item.mcount }" th:text="${item.mcount}"></td>
+												<td th:title="${item.userId }" th:text="${item.userId}"></td>
+												<td th:title="${item.mtime }" th:text="(${item.mtime==null })?'':${#strings.substring(item.mtime,0,16)}"></td>
+												
+												 <td><button onclick="checkTimes(this)" th:id="${item.mtId}"   th:if="${item.mcount le 2}"   class="btn btn-info">重新发送</button></td>
+
+												
+												
+                                            </tr>         													
+                                        </tbody>
+                                    </table>
+                                    <div th:with="linkUrl='',start=${page.offset},total=${page.count},pageSize=10">
+                                    <div th:replace="common/pagination :: pagenav"></div>
+                                	</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="common/layout">
+<head>
+<style>
+label {
+    font-weight: 400;
+    font-size: 1.5em;
+}
+</style>
+<title>代理用户修改</title>
+<script th:src="@{/My97DatePicker/WdatePicker.js}"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/zTreeStyle/zTreeStyle.css}"></link>
+<script  th:src="@{/js/jquery.ztree.core.js}"></script>
+<script  th:src="@{/js/jquery.ztree.excheck.js}"></script>
+	<SCRIPT type="text/javascript" th:inline="javascript">
+		var setting = {
+			check: {
+				enable: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+		
+		var zNodes =eval([[${treeData}]]);
+		var code;
+		
+		function setCheck() {
+		
+			setting.check.chkboxType = { "Y" : "ps", "N" : "ps" };
+		}
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			
+			setCheck();
+		});
+	</SCRIPT>
+	<script type="text/javascript">
+		<!-- 将选中的人ID 保存到tmeplate中 -->
+		function allotTemplate(id){
+		
+				var o=$.fn.zTree.getZTreeObj("treeDemo");
+				var data=o.getCheckedNodes(true);
+				var con='';
+				for ( d in data){
+					console.log("data: "+data[d])
+					if(data[d].id==-1){
+					con+=data[d].value+','
+					}
+				}
+				console.log(con)
+			$.post(
+				"/template/ajaxSaveUserTemplate",
+				{temId:id,uids:con},
+				function(msg){
+					alert(msg)
+				}
+			)	
+				
+		}
+	</script>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="row center-block">
+			<div class=" col-lg-8">
+				<div class="main-box center-block">
+					<header class="main-box-header"> </header>
+					<div class="main-box-body">
+						<form th:action="@{/template/saveTemplate}"
+							onsubmit="return check()" method="post">
+							<div class="form-group">
+								<label>主题：</label> <input type="text" class="form-control" th:value="${templateVo.subject}"
+									name="subject" />
+							</div>
+							<div class="form-group">
+								 <input type="hidden" class="form-control" th:value="${templateVo.temId}" name="temId"   />
+							</div>
+ 							<div class="form-group">
+								<label class="col-lg-2">开始时间：</label><div class="col-md-4"><input class="Wdate form-control" type="text" th:value="${templateVo.startTime}" name="startTime" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></div>
+								<label class="col-md-2">结束时间：</label> 
+								<div class="col-md-4"><input class="Wdate form-control" name="endTime" type="text"  th:value="${templateVo.endTime}" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-12">模板内容：</label>
+								<textarea rows="8" cols="" class="form-control" name="content" th:text="${templateVo.content}"></textarea>
+							</div>
+							<div class="profile-message-btn center-block text-center"  th:if="${allot==null}" >
+								<input type="submit" class="btn btn-success" value="保存" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div  class=" col-lg-4"   >
+				<div class="content_wrap">
+					<div class="zTreeDemoBackground left"  style="height:300px;">
+						<ul id="treeDemo" class="ztree"></ul>
+					</div>
+					<div  align="center">
+							<button class="btn btn-success"  onclick="allotTemplate(this.id)"  th:id="${templateVo.temId}"  >分配</button>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

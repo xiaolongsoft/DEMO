@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="common/layout">
+<head>
+<style>
+label {
+    font-weight: 400;
+    font-size: 1.5em;
+}
+</style>
+<title>短息发送平台</title>
+<script th:src="@{/My97DatePicker/WdatePicker.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+	$(document).ready(function() {
+			setContent();
+	});
+	function check() {
+	}
+	
+	
+	//根据选择的模板主题将内容放入
+	function setContent(){
+			var content=$(":selected").attr("id");
+			$("#content").text(content);
+	}
+</script>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="row center-block">
+			<div class=" col-lg-8">
+				<div class="main-box center-block">
+					<header class="main-box-header"> </header>
+					<div class="main-box-body">
+						<form th:action="@{/sms/saveMsg}"
+							onsubmit="return check()" method="post">
+							<div class="form-group">
+								<label>电话号码：</label> <input type="text" class="form-control"
+									name="receiverInfo" />
+							</div>
+							<div class="form-group">
+								<label>选择模板：</label>
+								 <select class="form-control"   name="subject"   onchange="setContent(this)" >
+								 		<option  th:each="t:${page.data}"  th:text="${t.subject}"  th:value="${t.temId}"  th:id="${t.content}">
+								 		</option>
+								</select>
+							</div>							
+
+							<div class="form-group">
+								<label class="col-lg-12">短信内容：</label>
+								<textarea id="content"  rows="8" cols="" class="form-control" name="content"  readonly="readonly"></textarea>
+							</div>
+							<div class="profile-message-btn center-block text-center">
+								<input type="submit" class="btn btn-success btn-lg" value="发送" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

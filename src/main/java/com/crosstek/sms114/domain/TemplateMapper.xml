@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crosstek.sms114.dao.TemplateDao" >
+	<resultMap type="com.crosstek.sms114.domain.Template" id="Template">
+			<result  column="tem_id"  property="temId" jdbcType="BIGINT"/>
+			<result  column="subject"  property="subject" jdbcType="VARCHAR"/>
+			<result  column="content"  property="content" jdbcType="VARCHAR"/>
+			<result  column="start_time"  property="startTime" jdbcType="TIMESTAMP"/>
+			<result  column="end_time"  property="endTime" jdbcType="TIMESTAMP"/>
+			<result  column="ctime"  property="ctime" jdbcType="TIMESTAMP"/>
+			<result  column="status"  property="status" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+		<sql id="ByWhereClause">
+		<trim prefix="where" prefixOverrides="and">
+			<if test="subject !=null and subject != '' "> and subject LIKE CONCAT('%',#{subject},'%' ) </if>
+			<if test="content !=null and content != '' "> and LIKE CONCAT('%',#{content},'%' ) </if>
+			<if test="startTime !=null and startTime != '' "> and start_time&gt;=#{startTime}</if>
+			<if test="endTime !=null and endTime != '' "> and end_time&lt;=#{endTime}</if>
+		</trim>
+		</sql>		
+	
+ <select id="getRecordCount"  resultType="java.lang.Long" >
+    select   count(*) from sms_template  
+        	<include refid="ByWhereClause"></include>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="Template" >
+    select `tem_id` ,`subject` ,`content` ,`start_time` ,`end_time` ,`ctime` ,`status`  from sms_template where  `tem_id` = #{temId}
+  </select>
+  
+  <select id="search" resultMap="Template"  >
+    select `tem_id` ,`subject` ,`content` ,`start_time` ,`end_time` ,`ctime` ,`status`  from sms_template
+    	<include refid="ByWhereClause"></include>
+    limit #{offset},#{pageSize}
+  </select>
+  
+  <insert id="insert"  useGeneratedKeys="true" >
+    insert into sms_template (`subject` ,`content` ,`start_time` ,`end_time` ,`ctime` ,`status` ) values (#{subject},#{content},#{startTime},#{endTime},#{ctime},#{status})
+  </insert>
+  		
+  <delete id="deleteByPrimaryKey">
+    delete from sms_template where  `tem_id` = #{temId}
+  </delete>
+  
+  <update id="updateByPrimaryKey" parameterType="com.crosstek.sms114.domain.Template" >
+    update sms_template set `subject` = #{subject},`content` = #{content},`start_time` = #{startTime},`end_time` = #{endTime},`ctime` = #{ctime},`status` = #{status} where  `tem_id` = #{temId}
+  </update>
+  
+</mapper>
