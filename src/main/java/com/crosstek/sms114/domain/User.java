@@ -25,8 +25,18 @@ public class User extends PageModel  implements Serializable {
 	private Timestamp ctime;//
 	  
 	private String status;//
+	
+	private  String deptname; //  不存表 临时字段
 	  
 	
+	public String getDeptname() {
+		return deptname;
+	}
+
+	public void setDeptname(String deptname) {
+		this.deptname = deptname;
+	}
+
 	public String getName() {
 		 return name;
 	}

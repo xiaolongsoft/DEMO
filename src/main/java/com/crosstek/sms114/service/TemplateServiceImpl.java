@@ -48,6 +48,7 @@ public class TemplateServiceImpl implements TemplateService {
 	public void save(Template template) {
 		if(template.getTemId()==null){
 			template.setCtime(new Timestamp(System.currentTimeMillis()));
+			template.setStatus("1");
 			templateMapper.insert(template);
 			System.err.println(template.getSubject());
 			System.out.println(template.getContent());

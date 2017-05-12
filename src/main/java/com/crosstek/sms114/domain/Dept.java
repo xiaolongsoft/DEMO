@@ -21,6 +21,17 @@ public class Dept  extends PageModel implements Serializable {
 	private Timestamp ctime;//更新时间
 	  
 	private Long user;//更新人
+	
+	private String username;  //临时字段 不存表
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public Long getDeptId() {
 		return deptId;

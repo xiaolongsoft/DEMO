@@ -44,6 +44,7 @@
   <select id="search" resultMap="Send">
     select `mt_id` ,`receiver_info` ,`content` ,`subject` ,`send_time` ,`media_task_id` ,`mo_id` ,`ctime` ,`mtime` ,`user_id` ,`sysuid` ,`mcount`  from sms_send
     <include refid="ByWhereClause"></include>
+    
    	 limit #{offset},#{pageSize}
   </select>
   

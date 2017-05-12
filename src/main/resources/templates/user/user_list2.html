@@ -50,8 +50,8 @@
 											<tr th:each="item,itemStat:${userList}">
 												<td th:title="${item.userId}" th:text="${item.userId}"></td>
 												<td th:title="${item.name }" th:text="${item.name}"></td>
-												<td th:title="${item.deptId }" th:text="${item.deptId}"></td>
-												<td th:title="${item.roleid }" th:text="${item.roleid}"></td>
+												<td th:title="${item.deptId }" th:text="${item.deptname}"></td>
+												<td th:title="${item.roleid }" th:text="(${item.roleid==1}?'维护':(${item.roleid==2}?'主管':(${item.roleid==3}?'经理':'客服')))"></td>
 												<td th:title="${item.ctime }" th:text="${item.ctime}"></td>
 												<td><a
 													th:href="@{/user/editUser(userId=${item.userId})}"

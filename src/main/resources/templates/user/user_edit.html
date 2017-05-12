@@ -6,6 +6,55 @@
 <title>代理用户修改</title>
 <script th:src="@{/My97DatePicker/WdatePicker.js}"></script>
 <script type="text/javascript" th:inline="javascript">
+		$(document).ready(function() {
+		
+				$('#userForm').bootstrapValidator({
+					message: 'This value is not valid',
+			        feedbackIcons: {
+			            valid: 'glyphicon glyphicon-ok',
+			            invalid: 'glyphicon glyphicon-remove',
+			            validating: 'glyphicon glyphicon-refresh'
+			        },
+			        fields:{
+			        
+			        	roleid:{
+			        	
+			        	validators:{
+			        		notEmpty:{
+			        			message: '请选择用户角色!'
+			        		}	
+			        	}
+			        	
+			        	},
+			        
+			        
+			        	name:{
+			        			message:"",
+			        			validators:{
+			        				notEmpty: {
+			                        	message: '用户名不能为空!'
+			                    }
+			                   
+			        			}
+			        	},
+			        	pwd:{
+			        		validators:{
+			        			notEmpty: {
+			                        	message: '密码不能为空!'
+			                    },
+			                    stringLength:{
+			                    	min:6,
+			                    	message:'密码长度不小于6位。'
+			                    }
+			                    
+			        		}
+			        	
+			        	}
+			        }
+						
+				});		
+		});
+
 </script>
 </head>
 <body>
@@ -24,18 +73,18 @@
 					<header class="main-box-header">
 					</header>
 					<div class="main-box-body">
-						<form th:action="@{/user/saveUser}" onsubmit="return check()" method="post">
+						<form th:action="@{/user/saveUser}" method="post"   id="userForm">
 							<div class="form-group">
-								<label>角色：</label> 
+								<label >角色：</label> 
 								<div class="radio">
 									<input type="radio" name="roleid" value="1" id="optionsRadios1" th:checked="${user.roleid}==1"/>
-									<label for="optionsRadios1">代理商</label>
+									<label for="optionsRadios1">维护</label>
 									<input type="radio" name="roleid" value="2" id="optionsRadios2"  th:checked="${user.roleid}==2"/>
-									<label for="optionsRadios2">运营人员</label>
+									<label for="optionsRadios2">主管</label>
 									<input type="radio" name="roleid" value="3" id="optionsRadios3" th:checked="${user.roleid}==3"/>
-									<label for="optionsRadios3" >客服人员</label>
-									<input type="radio" name="roleid" value="4" id="optionsRadios4" th:checked="${user.roleid}==4"/>
-									<label for="optionsRadios4">维护人员</label>
+									<label for="optionsRadios3" >经理</label>
+									<input type="radio" name="roleid" value="4" id="optionsRadios4" th:checked="${user.roleid}==4 or ${user.roleid}==null"  />
+									<label for="optionsRadios4">客服</label>
 								</div>
 							</div>
 							<div class="form-group">

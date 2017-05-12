@@ -25,7 +25,11 @@
   </select>
   
   <select id="search" resultMap="Dept">
-    select `dept_id` ,`name` ,`pid` ,`ctime` ,`user`  from t_dept
+    select d.`dept_id` ,d.`name` ,d.`pid` ,d.`ctime` ,d.`user` ,u.name AS username 
+    from t_dept d
+    LEFT JOIN t_user u
+    ON   d.user=u.user_id
+    ORDER BY d.ctime
   </select>
   
     <select id="searchTreeData" resultType="com.crosstek.sms114.common.TreeData">

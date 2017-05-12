@@ -35,7 +35,7 @@
                                         <thead>
                                             <tr>
 												<th>小组名称</th>
-												<th>上级小组</th>
+												<!-- <th>上级小组</th> -->
 												<th>小组负责人</th>
 												<th>创建时间</th>
 												<th>操作</th>
@@ -44,8 +44,8 @@
                                         <tbody>
                                               <tr th:each="item,itemStat:${deptList}">
 												<td th:title="${item.name }" th:text="${item.name}"></td>
-												<td th:title="${item.pid }" th:text="${item.pid}"></td>
-												<td th:title="${item.user }" th:text="${item.user}"></td>
+												<!-- <td th:title="${item.pid }" th:text="${item.pid}"></td> -->
+												<td th:title="${item.user }" th:text="${item.username}"></td>
 												<td th:title="${item.ctime }" th:text="${item.ctime}"></td>
 												<td><a th:href="@{/dept/editDept(deptId=${item.deptId})}" class="btn btn-info">修改</a>
 												<a th:href="@{/dept/deleteDept(deptId=${item.deptId})}" class="btn btn-info">删除</a>

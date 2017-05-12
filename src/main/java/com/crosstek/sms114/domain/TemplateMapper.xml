@@ -13,6 +13,7 @@
 	
 		<sql id="ByWhereClause">
 		<trim prefix="where" prefixOverrides="and">
+							and status=1
 			<if test="subject !=null and subject != '' "> and subject LIKE CONCAT('%',#{subject},'%' ) </if>
 			<if test="content !=null and content != '' "> and LIKE CONCAT('%',#{content},'%' ) </if>
 			<if test="startTime !=null and startTime != '' "> and start_time&gt;=#{startTime}</if>
@@ -25,7 +26,7 @@
         	<include refid="ByWhereClause"></include>
   </select>
   <select id="selectByPrimaryKey" resultMap="Template" >
-    select `tem_id` ,`subject` ,`content` ,`start_time` ,`end_time` ,`ctime` ,`status`  from sms_template where  `tem_id` = #{temId}
+    select `tem_id` ,`subject` ,`content` ,`start_time` ,`end_time` ,`ctime` ,`status`  from sms_template where  `tem_id` = #{temId}  and status=1
   </select>
   
   <select id="search" resultMap="Template"  >
@@ -38,9 +39,9 @@
     insert into sms_template (`subject` ,`content` ,`start_time` ,`end_time` ,`ctime` ,`status` ) values (#{subject},#{content},#{startTime},#{endTime},#{ctime},#{status})
   </insert>
   		
-  <delete id="deleteByPrimaryKey">
-    delete from sms_template where  `tem_id` = #{temId}
-  </delete>
+  <update id="deleteByPrimaryKey">
+    update  sms_template   set status=0   where  `tem_id` = #{temId}
+  </update>
   
   <update id="updateByPrimaryKey" parameterType="com.crosstek.sms114.domain.Template" >
     update sms_template set `subject` = #{subject},`content` = #{content},`start_time` = #{startTime},`end_time` = #{endTime},`ctime` = #{ctime},`status` = #{status} where  `tem_id` = #{temId}

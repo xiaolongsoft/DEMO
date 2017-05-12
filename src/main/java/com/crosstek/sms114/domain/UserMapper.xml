@@ -39,7 +39,12 @@
   </select> 
   
   <select id="search" resultMap="User">
-    select `user_id` ,`name` ,`pwd` ,`roleid` ,`dept_id` ,`ctime` ,`status`  from t_user
+    select u.`user_id` ,u.`name` ,u.`pwd` ,u.`roleid` ,u.`dept_id` ,u.`ctime` ,u.`status` , d.name  deptname 
+    FROM t_user  u
+    LEFT JOIN t_dept d
+    
+	ON  u.`dept_id`=d.`dept_id`
+	ORDER BY u.user_id
      limit #{offset},#{pageSize}
   </select>
   
